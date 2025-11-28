@@ -6,7 +6,7 @@
 #    By: eieong <eieong@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/21 13:59:50 by eieong            #+#    #+#              #
-#    Updated: 2025/11/21 14:04:13 by eieong           ###   ########.fr        #
+#    Updated: 2025/11/28 12:29:36 by eieong           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ SRC_DIR = src/
 OBJ_DIR = obj/
 HEAD_DIR = include/
 
-SRC_FILES = main.cpp
+SRC_FILES = main.cpp \
+			Bureaucrat.cpp
 OBJ_FILES = $(SRC_FILES:.cpp=.o)
 
 SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
