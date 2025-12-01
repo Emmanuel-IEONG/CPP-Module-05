@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 14:05:09 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/28 14:43:30 by eieong           ###   ########.fr       */
+/*   Updated: 2025/12/01 13:34:56 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ Bureaucrat	&Bureaucrat::operator=(Bureaucrat const & rhs)
 	return (*this);
 }
 
-std::string	Bureaucrat::getName() const
+const std::string	Bureaucrat::getName() const
 {
 	return (this->_name);
 }
@@ -68,6 +68,11 @@ void	Bureaucrat::decrementGrade()
 		throw (GradeTooLowException());
 	else
 		this->_grade++;
+}
+
+void	Bureaucrat::signForm(Form &f)
+{
+	f.beSigned(*this);
 }
 
 const char	*Bureaucrat::GradeTooHighException::what() const throw()
