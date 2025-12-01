@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 14:05:02 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/28 12:06:35 by eieong           ###   ########.fr       */
+/*   Updated: 2025/12/01 10:46:04 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 			~Bureaucrat();
 
 			Bureaucrat	&operator=(Bureaucrat const & rhs);
-			std::string	getName() const;
+			const std::string	getName() const;
 			int			getGrade() const;
 			void		incrementGrade();
 			void		decrementGrade();

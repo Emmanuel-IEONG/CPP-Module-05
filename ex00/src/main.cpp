@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 14:04:20 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/28 15:53:31 by eieong           ###   ########.fr       */
+/*   Updated: 2025/12/01 10:42:37 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,18 +65,27 @@ int	main()
 		Bureaucrat	d("John", 2);
 		std::cout << &d;
 		d.decrementGrade();
+		std::cout << &d;
 		d.decrementGrade();
+		std::cout << &d;
 		d.decrementGrade();
+		std::cout << &d;
 		d.decrementGrade();
+		std::cout << &d;
 		d.decrementGrade();
 		std::cout << &d;
 		d.incrementGrade();
-		d.incrementGrade();
-		d.incrementGrade();
+		std::cout << &d;
 		d.incrementGrade();
 		std::cout << &d;
 		d.incrementGrade();
+		std::cout << &d;
 		d.incrementGrade();
+		std::cout << &d;
+		d.incrementGrade();
+		std::cout << &d;
+		d.incrementGrade();
+		std::cout << &d;
 		d.incrementGrade();
 	}
 	catch(const std::exception& e)
