@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 18:08:21 by eieong            #+#    #+#             */
-/*   Updated: 2025/12/01 11:28:21 by eieong           ###   ########.fr       */
+/*   Updated: 2025/12/01 14:03:44 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@
 			Form &	operator=(Form const & rhs);
 			const std::string	getName() const;
 			bool	getSignedStatus() const;
-			const int	getGradeToSign() const;
-			const int	getGradeToExecute() const;
+			int	getGradeToSign() const;
+			int	getGradeToExecute() const;
 			void	beSigned(Bureaucrat &b);
 
 		class	GradeTooHighException : public std::exception
@@ -50,6 +50,6 @@
 		};
 	};
 
-	std::ostream	&operator<<(std::ostream out, Form *f);
+	std::ostream	&operator<<(std::ostream &out, Form *f);
 
 #endif

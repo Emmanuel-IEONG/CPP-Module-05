@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 18:08:17 by eieong            #+#    #+#             */
-/*   Updated: 2025/12/01 13:39:17 by eieong           ###   ########.fr       */
+/*   Updated: 2025/12/01 14:06:57 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,12 @@ bool	Form::getSignedStatus() const
 	return (this->_signed);
 }
 
-const int	Form::getGradeToSign() const
+int	Form::getGradeToSign() const
 {
 	return (this->_grade_to_sign);
 }
 
-const int	Form::getGradeToExecute() const
+int	Form::getGradeToExecute() const
 {
 	return (this->_grade_to_execute);
 }
@@ -80,18 +80,19 @@ void	Form::beSigned(Bureaucrat &b)
 
 const char	*Form::GradeTooHighException::what() const throw()
 {
-	return ("Grade too high (< 1)");
+	return ("Grade too high");
 }
 
 const char	*Form::GradeTooLowException::what() const throw()
 {
-	return ("Grade too low (> 150)");
+	return ("Grade too low");
 }
 
-std::ostream	&operator<<(std::ostream out, Form *f)
+std::ostream	&operator<<(std::ostream &out, Form *f)
 {
 	if (!f->getSignedStatus())
 		out << f->getName() << ", not signed. Grade required to sign : " << f->getGradeToSign() << " and to execute : " << f->getGradeToExecute() << std::endl;
 	else
 		out << f->getName() << ", signed. Grade required to sign : " << f->getGradeToSign() << " and to execute : " << f->getGradeToExecute() << std::endl;
+	return (out);
 }
