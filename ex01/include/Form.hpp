@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 18:08:21 by eieong            #+#    #+#             */
-/*   Updated: 2025/12/01 14:03:44 by eieong           ###   ########.fr       */
+/*   Updated: 2025/12/02 11:23:17 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@
 		private:
 			const std::string	_name;
 			bool				_signed;
-			const int			_grade_to_sign;
-			const int			_grade_to_execute;
+			const int			_sign_grade	;
+			const int			_execute_grade	;
 		public:
 			Form();
 			Form(Form const & src);
-			Form(const std::string name, const int grade_to_sign, const int grade_to_execute);
+			Form(const std::string name, const int sign_grade	, const int execute_grade	);
 			~Form();
 			Form &	operator=(Form const & rhs);
 			const std::string	getName() const;

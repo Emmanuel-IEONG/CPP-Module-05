@@ -6,28 +6,28 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 18:08:17 by eieong            #+#    #+#             */
-/*   Updated: 2025/12/01 14:06:57 by eieong           ###   ########.fr       */
+/*   Updated: 2025/12/02 11:23:47 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/Form.hpp"
 
-Form::Form() : _name("NoName"), _signed(false), _grade_to_sign(1), _grade_to_execute(1)
+Form::Form() : _name("NoName"), _signed(false), _sign_grade	(1), _execute_grade	(1)
 {
 	std::cout << "Form Default constructor called" << std::endl;
 }
 
-Form::Form(Form const & src) : _name(src._name), _signed(false), _grade_to_sign(src._grade_to_sign), _grade_to_execute(src._grade_to_execute)
+Form::Form(Form const & src) : _name(src._name), _signed(false), _sign_grade	(src._sign_grade	), _execute_grade	(src._execute_grade	)
 {
 	std::cout << "Form Copy constructor called" << std::endl;
 }
 
-Form::Form(const std::string name, const int grade_to_sign, const int grade_to_execute) : _name(name), _signed(false), _grade_to_sign(grade_to_sign), _grade_to_execute(grade_to_execute)
+Form::Form(const std::string name, const int sign_grade	, const int execute_grade	) : _name(name), _signed(false), _sign_grade	(sign_grade	), _execute_grade	(execute_grade	)
 {
 	std::cout << "Form Parametric constructor called" << std::endl;
-	if (grade_to_sign < 1 || grade_to_execute < 1)
+	if (sign_grade	 < 1 || execute_grade	 < 1)
 		throw (GradeTooHighException());
-	else if (grade_to_sign > 150 || grade_to_execute > 150)
+	else if (sign_grade	 > 150 || execute_grade	 > 150)
 		throw (GradeTooLowException());
 }
 
@@ -57,12 +57,12 @@ bool	Form::getSignedStatus() const
 
 int	Form::getGradeToSign() const
 {
-	return (this->_grade_to_sign);
+	return (this->_sign_grade	);
 }
 
 int	Form::getGradeToExecute() const
 {
-	return (this->_grade_to_execute);
+	return (this->_execute_grade	);
 }
 
 void	Form::beSigned(Bureaucrat &b)
