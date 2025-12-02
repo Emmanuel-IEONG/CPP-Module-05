@@ -1,71 +1,71 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.cpp                                           :+:      :+:    :+:   */
+/*   AForm.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 18:08:17 by eieong            #+#    #+#             */
-/*   Updated: 2025/12/02 11:56:08 by eieong           ###   ########.fr       */
+/*   Updated: 2025/12/02 11:56:47 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/Form.hpp"
+#include "../include/AForm.hpp"
 
-Form::Form() : _name("NoName"), _signed(false), _sign_grade(1), _execute_grade(1)
+AForm::AForm() : _name("NoName"), _signed(false), _sign_grade(1), _execute_grade(1)
 {
-	std::cout << "Form Default constructor called" << std::endl;
+	std::cout << "AForm Default constructor called" << std::endl;
 }
 
-Form::Form(Form const & src) : _name(src._name), _signed(false), _sign_grade(src._sign_grade), _execute_grade(src._execute_grade)
+AForm::AForm(AForm const & src) : _name(src._name), _signed(false), _sign_grade(src._sign_grade), _execute_grade(src._execute_grade)
 {
-	std::cout << "Form Copy constructor called" << std::endl;
+	std::cout << "AForm Copy constructor called" << std::endl;
 }
 
-Form::Form(const std::string name, const int sign_grade, const int execute_grade) : _name(name), _signed(false), _sign_grade(sign_grade), _execute_grade(execute_grade)
+AForm::AForm(const std::string name, const int sign_grade, const int execute_grade) : _name(name), _signed(false), _sign_grade	(sign_grade), _execute_grade(execute_grade)
 {
-	std::cout << "Form Parametric constructor called" << std::endl;
+	std::cout << "AForm Parametric constructor called" << std::endl;
 	if (sign_grade < 1 || execute_grade < 1)
 		throw (GradeTooHighException());
 	else if (sign_grade > 150 || execute_grade > 150)
 		throw (GradeTooLowException());
 }
 
-Form::~Form()
+AForm::~AForm()
 {
-	std::cout << "Form Destructor called" << std::endl;
+	std::cout << "AForm Destructor called" << std::endl;
 }
 
-Form &	Form::operator=(Form const & rhs)
+AForm &	AForm::operator=(AForm const & rhs)
 {
-	std::cout << "Form Copy assignment operator called" << std::endl;
+	std::cout << "AForm Copy assignment operator called" << std::endl;
 
 	if (this != &rhs)
 		this->_signed = rhs._signed;
 	return (*this);
 }
 
-const std::string	Form::getName() const
+const std::string	AForm::getName() const
 {
 	return (this->_name);
 }
 
-bool	Form::getSignedStatus() const
+bool	AForm::getSignedStatus() const
 {
 	return (this->_signed);
 }
 
-int	Form::getGradeToSign() const
+int	AForm::getGradeToSign() const
 {
 	return (this->_sign_grade);
 }
 
-int	Form::getGradeToExecute() const
+int	AForm::getGradeToExecute() const
 {
 	return (this->_execute_grade);
 }
 
-void	Form::beSigned(Bureaucrat &b)
+void	AForm::beSigned(Bureaucrat &b)
 {
 	if (this->getGradeToSign() < b.getGrade())
 		throw(GradeTooLowException());
@@ -78,17 +78,17 @@ void	Form::beSigned(Bureaucrat &b)
 		std::cout << "Bureaucrat " << b.getName() << " couldn't sign " << this->getName() << " because it was already signed." << std::endl;
 }
 
-const char	*Form::GradeTooHighException::what() const throw()
+const char	*AForm::GradeTooHighException::what() const throw()
 {
 	return ("Grade too high");
 }
 
-const char	*Form::GradeTooLowException::what() const throw()
+const char	*AForm::GradeTooLowException::what() const throw()
 {
 	return ("Grade too low");
 }
 
-std::ostream	&operator<<(std::ostream &out, Form *f)
+std::ostream	&operator<<(std::ostream &out, AForm *f)
 {
 	if (!f->getSignedStatus())
 		out << f->getName() << ", not signed. Grade required to sign : " << f->getGradeToSign() << " and to execute : " << f->getGradeToExecute() << std::endl;
