@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 18:08:21 by eieong            #+#    #+#             */
-/*   Updated: 2025/12/02 11:58:24 by eieong           ###   ########.fr       */
+/*   Updated: 2025/12/04 15:35:35 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,10 @@
 			AForm &	operator=(AForm const & rhs);
 			const std::string	getName() const;
 			bool	getSignedStatus() const;
-			int	getGradeToSign() const;
-			int	getGradeToExecute() const;
+			int		getGradeToSign() const;
+			int		getGradeToExecute() const;
 			void	beSigned(Bureaucrat &b);
+			virtual void	execute(Bureaucrat const & executor) const = 0;
 
 		class	GradeTooHighException : public std::exception
 		{
@@ -44,6 +45,12 @@
 		};
 		
 		class	GradeTooLowException : public std::exception
+		{
+			public:
+			virtual const char *what() const throw();
+		};
+
+		class	FormNotSignedException : public std::exception
 		{
 			public:
 			virtual const char *what() const throw();

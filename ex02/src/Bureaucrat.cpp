@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 14:05:09 by eieong            #+#    #+#             */
-/*   Updated: 2025/12/01 13:34:56 by eieong           ###   ########.fr       */
+/*   Updated: 2025/12/04 15:05:20 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,14 @@ void	Bureaucrat::decrementGrade()
 		this->_grade++;
 }
 
-void	Bureaucrat::signForm(Form &f)
+void	Bureaucrat::signForm(AForm &f)
 {
 	f.beSigned(*this);
+}
+
+void	Bureaucrat::executeForm(AForm const & form) const
+{
+	form.execute(*this);
 }
 
 const char	*Bureaucrat::GradeTooHighException::what() const throw()

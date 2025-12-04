@@ -10,9 +10,12 @@
 /*																			*/
 /* ************************************************************************** */
 
-#include "../include/Form.hpp"
+#include "../include/AForm.hpp"
 #include "../include/Bureaucrat.hpp"
 #include "../include/color.hpp"
+#include "../include/PresidentialPardonForm.hpp"
+#include "../include/RobotomyRequestForm.hpp"
+#include "../include/ShrubberyCreationForm.hpp"
 
 static void sep()
 {
@@ -21,122 +24,114 @@ static void sep()
 
 int main()
 {
-	std::cout << BLUE "1) Test invalid Bureaucrat construction\n" RESET << std::endl;
-	try
-	{
-		std::cout << YELLOW "a) Construction Bureaucrat with grade too high (0)..." RESET << std::endl;
-		Bureaucrat b1("TooHigh", 0);
-		(void)b1;
+	Bureaucrat	noob("Noob", 150);
+	Bureaucrat	junior("Junior", 138);
+	Bureaucrat	manager("Manager", 40);
+	Bureaucrat	director("Director", 1);
+	ShrubberyCreationForm	shrubb("home");
+	RobotomyRequestForm		robotomy(junior.getName());
+	PresidentialPardonForm	pardon(manager.getName());
+	std::cout << "------------------------Reminder------------------------\n";
+	std::cout << &noob;
+	std::cout << &junior;
+	std::cout << &manager;
+	std::cout << &director << std::endl;
+	std::cout << &shrubb << "Target : " << shrubb.getTarget() << std::endl;
+	std::cout << &robotomy << "Target : " << robotomy.getTarget() << std::endl;
+	std::cout << &pardon  << "Target : " << pardon.getTarget() << std::endl;
+	sep();
+	std::cout << LBLUE "A) Grade boundary exceptions" RESET << std::endl;
+	try {
+		std::cout << YELLOW "-> Trying to decrement Noob (150) (should throw GradeTooLow)" RESET << std::endl;
+		noob.decrementGrade();
+	} catch (std::exception &e) {
+		std::cerr << " -> Exception: " << e.what() << std::endl;
 	}
-	catch (std::exception &e)
-	{
+	try {
+		std::cout << YELLOW "-> Trying to increment Director (1) (should throw GradeTooHigh)" RESET << std::endl;
+		director.incrementGrade();
+	} catch (std::exception &e) {
 		std::cerr << " -> Exception: " << e.what() << std::endl;
 	}
 	sep();
-	try
-	{
-		std::cout << YELLOW "b) Construction Bureaucrat with grade too low (151)..." RESET << std::endl;
-		Bureaucrat b2("TooLow", 151);
-		(void)b2;
+	std::cout << LBLUE "B) ShrubberyCreationForm tests (sign 145, exec 137)" RESET << std::endl;
+	try {
+		std::cout << YELLOW "-> Noob tries to sign Shrubbery (should fail)" RESET << std::endl;
+		shrubb.beSigned(noob);
+	} catch (std::exception &e) {
+		std::cerr << " -> Exception (beSigned): " << e.what() << std::endl;
 	}
-	catch (std::exception &e)
-	{
-		std::cerr << " -> Exception: " << e.what() << std::endl;
+	try {
+		std::cout << YELLOW "-> Junior tries to sign Shrubbery (should succeed)" RESET << std::endl;
+		shrubb.beSigned(junior);
+		std::cout << " -> Signed successfully by Junior" << std::endl;
+	} catch (std::exception &e) {
+		std::cerr << " -> Exception (beSigned): " << e.what() << std::endl;
 	}
-	sep();
-	std::cout << BLUE "2) Test increment/decrement\n" RESET << std::endl;
-	try
-	{
-		std::cout << YELLOW "a) Increment until out of range (from 2 to 1 then 0)..." RESET << std::endl;
-		Bureaucrat boss("Boss", 2);
-		std::cout << &boss;
-		boss.incrementGrade(); // 1
-		std::cout << " after increment: " << &boss;
-		boss.incrementGrade(); // throw
+	try {
+		std::cout << YELLOW "-> Junior tries to execute Shrubbery (should fail: exec grade too low)" RESET << std::endl;
+		junior.executeForm(shrubb);
+	} catch (std::exception &e) {
+		std::cerr << " -> Exception (execute): " << e.what() << std::endl;
 	}
-	catch (std::exception &e)
-	{
-		std::cerr << " -> Exception: " << e.what() << std::endl;
+	try {
+		std::cout << YELLOW "-> Manager tries to sign Shrubbery (should fail: already signed)" RESET << std::endl;
+		shrubb.beSigned(junior);
+		std::cout << " -> Signed successfully by Junior" << std::endl;
+	} catch (std::exception &e) {
+		std::cerr << " -> Exception (beSigned): " << e.what() << std::endl;
 	}
-	sep();
-	try
-	{
-		std::cout << YELLOW "b) Decrement until out of range (150 -> 151)..." RESET << std::endl;
-		Bureaucrat intern("Intern", 149);
-		std::cout << &intern;
-		intern.decrementGrade(); // 150
-		std::cout << " after decrement: " << &intern;
-		intern.decrementGrade(); // throw
-	}
-	catch (std::exception &e)
-	{
-		std::cerr << " -> Exception: " << e.what() << std::endl;
+	try {
+		std::cout << YELLOW "-> Manager tries to execute Shrubbery (should succeed)" RESET << std::endl;
+		manager.executeForm(shrubb);
+	} catch (std::exception &e) {
+		std::cerr << " -> Exception (execute): " << e.what() << std::endl;
 	}
 	sep();
-	std::cout << BLUE "3) Test invalid Form construction\n" RESET << std::endl;
-	try
-	{
-		std::cout << YELLOW "a) Construction Form with sign_grade too low (160)..." RESET << std::endl;
-		Form f1("BadSign", 160, 10);
-		(void)f1;
+	std::cout << LBLUE "C) RobotomyRequestForm tests (sign 72, exec 45)" RESET << std::endl;
+	try {
+		std::cout << YELLOW "-> Manager tries to execute unsigned Robotomy (should fail: not signed)" RESET << std::endl;
+		manager.executeForm(robotomy);
+	} catch (std::exception &e) {
+		std::cerr << " -> Exception (execute unsigned): " << e.what() << std::endl;
 	}
-	catch (std::exception &e)
-	{
-		std::cerr << " -> Exception: " << e.what() << std::endl;
+	try {
+		std::cout << YELLOW "-> Manager signs Robotomy (should succeed)" RESET << std::endl;
+		robotomy.beSigned(manager);
+		std::cout << " -> Robotomy signed by Manager" << std::endl;
+	} catch (std::exception &e) {
+		std::cerr << " -> Exception (beSigned): " << e.what() << std::endl;
 	}
-	sep();
-	try
-	{
-		std::cout << YELLOW "b) Construction Form with exec_grade too high (0)..." RESET << std::endl;
-		Form f2("BadExec", 10, 0);
-		(void)f2;
-	}
-	catch (std::exception &e)
-	{
-		std::cerr << " -> Exception: " << e.what() << std::endl;
-	}
-	sep();
-	std::cout << BLUE "4) Test beSigned and signForm (insufficient grade/ sufficient / double signature)\n" RESET << std::endl;
-	Form contract("Contract", 50, 25);
-	Bureaucrat junior("Junior", 100);
-	Bureaucrat manager("Manager", 40);
-	Bureaucrat director("Director", 1);
-
-	std::cout << "Initial Form: " << &contract;
-	std::cout << CYAN << &junior << LYELLOW << &manager << LRED << &director << RESET;
-	sep();
-	try
-	{
-		std::cout << YELLOW "a) Junior try to sign (grade 100)" RESET << std::endl;
-		contract.beSigned(junior);
-	}
-	catch (std::exception &e)
-	{
-		std::cerr << " -> Exception on beSigned: " << e.what() << std::endl;
+	std::cout << YELLOW "-> Manager executes Robotomy several times to show randomized result:" RESET << std::endl;
+	for (int i = 0; i < 10; ++i) {
+		try {
+			manager.executeForm(robotomy);
+		} catch (std::exception &e) {
+			std::cerr << " -> Exception (execute): " << e.what() << std::endl;
+		}
 	}
 	sep();
-
-	try
-	{
-		std::cout << YELLOW "b) Manager sign via Bureaucrat::signForm (grade 40)" RESET << std::endl;
-		manager.signForm(contract);
-		std::cout << " after signing: " << &contract;
+	std::cout << LBLUE "D) PresidentialPardonForm tests (sign 25, exec 5)" RESET << std::endl;
+	try {
+		std::cout << YELLOW "-> Manager tries to sign Pardon (should fail)" RESET << std::endl;
+		pardon.beSigned(manager);
+	} catch (std::exception &e) {
+		std::cerr << " -> Exception (beSigned): " << e.what() << std::endl;
 	}
-	catch (std::exception &e)
-	{
-		std::cerr << " -> Unexpected exception: " << e.what() << std::endl;
+	try {
+		std::cout << YELLOW "-> Director signs Pardon (should succeed)" RESET << std::endl;
+		pardon.beSigned(director);
+		std::cout << " -> Pardon signed by Director" << std::endl;
+	} catch (std::exception &e) {
+		std::cerr << " -> Exception (beSigned): " << e.what() << std::endl;
+	}
+	try {
+		std::cout << YELLOW "-> Director executes Pardon (should succeed)" RESET << std::endl;
+		director.executeForm(pardon);
+	} catch (std::exception &e) {
+		std::cerr << " -> Exception (execute): " << e.what() << std::endl;
 	}
 	sep();
-	try
-	{
-		std::cout << YELLOW "c) Director try to sign again (already signed)" RESET << std::endl;
-		director.signForm(contract);
-	}
-	catch (std::exception &e)
-	{
-		std::cerr << " -> Exception" << e.what() << std::endl;
-	}
-	sep();
-	std::cout << BLUE "End of tests" RESET << std::endl;
-	return 0;
+	std::cout << "Tests completed." << std::endl;
+	return (0);
 }

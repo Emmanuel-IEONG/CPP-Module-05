@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 18:08:17 by eieong            #+#    #+#             */
-/*   Updated: 2025/12/02 11:56:47 by eieong           ###   ########.fr       */
+/*   Updated: 2025/12/04 15:55:18 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	AForm::beSigned(Bureaucrat &b)
 		this->_signed = true;
 	}
 	else
-		std::cout << "Bureaucrat " << b.getName() << " couldn't sign " << this->getName() << " because it was already signed." << std::endl;
+		std::cout << "Bureaucrat " << b.getName() << " couldn't sign " << this->getName() << " form because it was already signed." << std::endl;
 }
 
 const char	*AForm::GradeTooHighException::what() const throw()
@@ -86,6 +86,11 @@ const char	*AForm::GradeTooHighException::what() const throw()
 const char	*AForm::GradeTooLowException::what() const throw()
 {
 	return ("Grade too low");
+}
+
+const char	*AForm::FormNotSignedException::what() const throw()
+{
+	return ("Form not signed");
 }
 
 std::ostream	&operator<<(std::ostream &out, AForm *f)
