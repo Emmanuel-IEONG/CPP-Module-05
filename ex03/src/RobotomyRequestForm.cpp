@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 11:46:27 by eieong            #+#    #+#             */
-/*   Updated: 2025/12/05 12:02:26 by eieong           ###   ########.fr       */
+/*   Updated: 2025/12/05 14:05:57 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,11 @@ void	RobotomyRequestForm::execute(Bureaucrat const & executor) const
 	{
 		std::cout << executor.getName() << " executed " << this->getName() << std::endl;
 		std::cout << "Dzzzzzz Dzzzzz Dzzz" << std::endl;
-		srand(time(NULL));
-		if ((rand() / r) % 2)	//PRNG...
-			std::cout << this->getTarget() << " has been robotomized." << std::endl;
+		srand(time(NULL) + r);
+		if (rand() % 2)	//PRNG...
+			std::cout << "  " << this->getTarget() << " has been robotomized." << std::endl;
 		else
-			std::cout << "Robotomy failed on " << this->getTarget() << "." << std::endl;
+			std::cout << "  Robotomy failed on " << this->getTarget() << "." << std::endl;
 		r++;
 	}
 }
