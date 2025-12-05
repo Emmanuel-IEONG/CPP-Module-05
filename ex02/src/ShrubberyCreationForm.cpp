@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 11:45:45 by eieong            #+#    #+#             */
-/*   Updated: 2025/12/04 16:17:58 by eieong           ###   ########.fr       */
+/*   Updated: 2025/12/05 12:02:19 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 		throw(AForm::GradeTooLowException());
 	else
 	{
+		std::cout << executor.getName() << " executed " << this->getName() << std::endl;
 		std::ofstream	outfile(this->getTarget().append("_shruberry").c_str());
 		outfile << "       _-_" << std::endl;
 		outfile << "    /~~   ~~\\" << std::endl;
