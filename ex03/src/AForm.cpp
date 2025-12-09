@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 18:08:17 by eieong            #+#    #+#             */
-/*   Updated: 2025/12/04 15:55:18 by eieong           ###   ########.fr       */
+/*   Updated: 2025/12/09 11:39:07 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,11 @@ int	AForm::getGradeToSign() const
 int	AForm::getGradeToExecute() const
 {
 	return (this->_execute_grade);
+}
+
+void	AForm::setSignedStatus(bool signedstatus)
+{
+	this->_signed = signedstatus;
 }
 
 void	AForm::beSigned(Bureaucrat &b)

@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 18:08:21 by eieong            #+#    #+#             */
-/*   Updated: 2025/12/05 13:32:16 by eieong           ###   ########.fr       */
+/*   Updated: 2025/12/09 11:29:32 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 			bool	getSignedStatus() const;
 			int		getGradeToSign() const;
 			int		getGradeToExecute() const;
+			void	setSignedStatus(bool signedstatus);
 			void	beSigned(Bureaucrat &b);
 			virtual void	execute(Bureaucrat const & executor) const = 0;
 

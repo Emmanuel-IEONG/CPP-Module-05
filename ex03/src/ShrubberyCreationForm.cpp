@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 11:45:45 by eieong            #+#    #+#             */
-/*   Updated: 2025/12/05 12:02:33 by eieong           ###   ########.fr       */
+/*   Updated: 2025/12/09 11:40:38 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,9 @@ ShrubberyCreationForm::ShrubberyCreationForm() : AForm("NoName", 145, 137), _tar
 	std::cout << "ShrubberyCreationForm Default constructor called" << std::endl;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const & src) : AForm(src)
+ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const & src) : AForm(src), _target(src._target)
 {
 	std::cout << "ShrubberyCreationForm Copy constructor called" << std::endl;
-	*this = src;
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string target) : AForm("Shrubbery creation", 145, 137), _target(target)
@@ -36,7 +35,11 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
 ShrubberyCreationForm &	ShrubberyCreationForm::operator=(ShrubberyCreationForm const & rhs)
 {
 	std::cout << "ShrubberyCreationForm Copy assignment operator called" << std::endl;
-	(void) rhs;
+	if (this != &rhs)
+	{
+		this->setSignedStatus(rhs.getSignedStatus());
+		this->_target = rhs._target;
+	}
 	return (*this);
 }
 

@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 11:46:27 by eieong            #+#    #+#             */
-/*   Updated: 2025/12/05 14:05:57 by eieong           ###   ########.fr       */
+/*   Updated: 2025/12/09 11:40:35 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,9 @@ RobotomyRequestForm::RobotomyRequestForm() : AForm("NoName", 72, 45), _target("N
 	std::cout << "RobotomyRequestForm Default constructor called" << std::endl;
 }
 
-RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm const & src) : AForm(src)
+RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm const & src) : AForm(src), _target(src._target)
 {
 	std::cout << "RobotomyRequestForm Copy constructor called" << std::endl;
-	*this = src;
 }
 
 RobotomyRequestForm::RobotomyRequestForm(const std::string target) : AForm("Robotomy request", 72, 45), _target(target)
@@ -36,7 +35,11 @@ RobotomyRequestForm::~RobotomyRequestForm()
 RobotomyRequestForm &	RobotomyRequestForm::operator=(RobotomyRequestForm const & rhs)
 {
 	std::cout << "RobotomyRequestForm Copy assignment operator called" << std::endl;
-	(void) rhs;
+	if (this != &rhs)
+	{
+		this->setSignedStatus(rhs.getSignedStatus());
+		this->_target = rhs._target;
+	}
 	return (*this);
 }
 
