@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 11:38:22 by eieong            #+#    #+#             */
-/*   Updated: 2025/12/05 11:47:08 by eieong           ###   ########.fr       */
+/*   Updated: 2025/12/09 11:54:30 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 	#include "PresidentialPardonForm.hpp"
 	#include "RobotomyRequestForm.hpp"
 	#include "ShrubberyCreationForm.hpp"
+	#include "color.hpp"
 
 	class	Intern
 	{

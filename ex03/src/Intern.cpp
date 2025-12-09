@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 11:38:50 by eieong            #+#    #+#             */
-/*   Updated: 2025/12/05 11:56:03 by eieong           ###   ########.fr       */
+/*   Updated: 2025/12/09 11:54:46 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,16 @@ AForm	*Intern::makeForm(std::string form, std::string target)
 	switch (i)
 	{
 		case (0):
-			std::cout << "Intern creates " << form << "." << std::endl;
+			std::cout << CYAN "Intern creates " << form << "." RESET << std::endl;
 			return (new PresidentialPardonForm(target));
 		case (1):
-			std::cout << "Intern creates " << form << "." << std::endl;
+			std::cout << CYAN "Intern creates " << form << "." RESET << std::endl;
 			return (new RobotomyRequestForm(target));
 		case (2):
-			std::cout << "Intern creates " << form << "." << std::endl;
+			std::cout << CYAN "Intern creates " << form << "." RESET << std::endl;
 			return (new ShrubberyCreationForm(target));
 		default:
-			std::cout << "Intern can't create " << form << " as it is not a valid form." << std::endl;
+			std::cout << RED "Intern can't create " << form << " as it is not a valid form." RESET << std::endl;
 			return (NULL);
 	}
 }
