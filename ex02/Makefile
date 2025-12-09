@@ -6,7 +6,7 @@
 #    By: eieong <eieong@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/28 18:07:28 by eieong            #+#    #+#              #
-#    Updated: 2025/12/04 15:29:03 by eieong           ###   ########.fr        #
+#    Updated: 2025/12/09 11:37:35 by eieong           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,7 @@ clean:
 
 fclean: clean
 	@rm -f $(NAME)
+	@rm -rf *_shruberry
 
 re: fclean all
 
